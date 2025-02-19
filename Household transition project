@@ -1,0 +1,435 @@
+ Title:
+ Mplus code for 
+ free-parameter latent transition models ;
+
+
+Data:
+  File is dec21_ab_LTA.dat ;
+Variable:
+  Names are 
+     hhid hhsex2003 hage2003 hhdie2003 hhdiep2003 old2003 prime2003 young2003
+     mig2003 die2003 hhsex2009 hage2009 hhdie2009 hhdiep2009 old2009 prime2009
+     young2009 mig2009 die2009 hdis2003 hhsex2015 hage2015 hhdie2015 hhdiep2015
+     old2015 prime2015 young2015 mig2015 die2015 hdis0315 hdis2009 hdis2015
+     die03_one die03_two die03_no die03_any die09_one die09_two die09_no
+     die09_any die15_one die15_two die15_no die15_any;
+  Missing are all (-9999) ; 
+
+idvar = hhid ; 
+
+usevar =
+    hhsex2003 hage2003
+    old2003 prime2003 young2003
+    mig2003
+
+    hhsex2009 hage2009
+    old2009 prime2009 young2009
+    mig2009 hdis2003
+
+    hhsex2015 hage2015
+    old2015 prime2015 young2015
+    mig2015 hdis0315 ;
+
+categorical =
+    hhsex2003 hage2003
+    old2003 prime2003 young2003
+    mig2003
+
+    hhsex2009 hage2009
+    old2009 prime2009 young2009
+    mig2009 hdis2003
+
+    hhsex2015 hage2015
+    old2015 prime2015 young2015
+    mig2015 hdis0315 ;
+
+    class = c1(6) c2(7) c3(7) ;
+
+Analysis:
+    Type = mixture ;
+    processor = 30  ;
+    starts = 2000 500;
+    mconv=0.001;
+
+model:
+    %overall%
+
+    [c3#1@-15] ;
+    [c3#2@-15] ;
+    [c3#3@-15] ;
+    [c3#4@-15] ;
+    [c3#5@-15] ;
+    [c3#6@-15] ;
+
+c2 on c1 ;
+c3 on c2 ;
+
+
+ Model c1:
+
+     %C1#1%
+
+     [ hhsex2003$1 ]   ;
+     [ hage2003$1 ]    ;
+     [ hage2003$2 ]    ;
+     [ old2003$1 ]     ;
+     [ prime2003$1 ]   ;
+     [ prime2003$2 ]   ;
+     [ young2003$1 ]   ;
+     [ young2003$2 ]   ;
+     [ mig2003$1 ]     ;
+     [ mig2003$2 ]     ;
+
+     %C1#2%
+
+     [ hhsex2003$1 ]   ;
+     [ hage2003$1 ]    ;
+     [ hage2003$2 ]    ;
+     [ old2003$1 ]     ;
+     [ prime2003$1 ]   ;
+     [ prime2003$2 ]   ;
+     [ young2003$1 ]   ;
+     [ young2003$2 ]   ;
+     [ mig2003$1 ]     ;
+     [ mig2003$2 ]     ;
+
+     %C1#3%
+
+     [ hhsex2003$1 ]   ;
+     [ hage2003$1 ]    ;
+     [ hage2003$2 ]    ;
+     [ old2003$1 ]     ;
+     [ prime2003$1 ]   ;
+     [ prime2003$2 ]   ;
+     [ young2003$1 ]   ;
+     [ young2003$2 ]   ;
+     [ mig2003$1 ]     ;
+     [ mig2003$2 ]     ;
+
+     %C1#4%
+
+     [ hhsex2003$1 ]   ;
+     [ hage2003$1 ]    ;
+     [ hage2003$2 ]    ;
+     [ old2003$1 ]     ;
+     [ prime2003$1 ]   ;
+     [ prime2003$2 ]   ;
+     [ young2003$1 ]   ;
+     [ young2003$2 ]   ;
+     [ mig2003$1 ]     ;
+     [ mig2003$2 ]     ;
+     
+     %C1#5%
+
+     [ hhsex2003$1 ] ;
+     [ hage2003$1 ]  ;
+     [ hage2003$2 ]  ;
+     [ old2003$1 ]   ;
+     [ prime2003$1 ] ;
+     [ prime2003$2 ] ; 
+     [ young2003$1 ] ;
+     [ young2003$2 ] ;
+     [ mig2003$1 ]   ;
+     [ mig2003$2 ]   ;
+
+     %C1#6%
+
+     [ hhsex2003$1 ] ;
+     [ hage2003$1 ]  ;
+     [ hage2003$2 ]  ;
+     [ old2003$1 ]   ;
+     [ prime2003$1 ] ;
+     [ prime2003$2 ] ; 
+     [ young2003$1 ] ;
+     [ young2003$2 ] ;
+     [ mig2003$1 ]   ;
+     [ mig2003$2 ]   ;
+
+Model c2:
+
+     %C2#1%
+
+     [ hhsex2009$1 ] ;
+     [ hhsex2009$2 ] ;
+     [ hage2009$1 ]  ;
+     [ hage2009$2 ]  ;
+     [ hage2009$3 ]  ;
+     [ old2009$1 ]   ;
+     [ old2009$2 ]   ;
+     [ prime2009$1 ] ;
+     [ prime2009$2 ] ; 
+     [ prime2009$3 ] ;
+     [ young2009$1 ] ;
+     [ young2009$2 ] ;
+     [ young2009$3 ] ;
+     [ mig2009$1 ]   ;
+     [ mig2009$2 ]   ;
+     [ mig2009$3 ]   ;
+     [hdis2003$1@50]  ;
+
+     %C2#2%
+
+     [ hhsex2009$1 ] ;
+     [ hhsex2009$2 ] ;
+     [ hage2009$1 ]  ;
+     [ hage2009$2 ]  ;
+     [ hage2009$3 ]  ;
+     [ old2009$1 ]   ;
+     [ old2009$2 ]   ;
+     [ prime2009$1 ] ;
+     [ prime2009$2 ] ; 
+     [ prime2009$3 ] ;
+     [ young2009$1 ] ;
+     [ young2009$2 ] ;
+     [ young2009$3 ] ;
+     [ mig2009$1 ]   ;
+     [ mig2009$2 ]   ;
+     [ mig2009$3 ]   ;
+     [hdis2003$1@50]  ;
+
+     %C2#3%
+
+     [ hhsex2009$1 ] ;
+     [ hhsex2009$2 ] ;
+     [ hage2009$1 ]  ;
+     [ hage2009$2 ]  ;
+     [ hage2009$3 ]  ;
+     [ old2009$1 ]   ;
+     [ old2009$2 ]   ;
+     [ prime2009$1 ] ;
+     [ prime2009$2 ] ; 
+     [ prime2009$3 ] ;
+     [ young2009$1 ] ;
+     [ young2009$2 ] ;
+     [ young2009$3 ] ;
+     [ mig2009$1 ]   ;
+     [ mig2009$2 ]   ;
+     [ mig2009$3 ]   ;
+     [hdis2003$1@50] ;
+
+     %C2#4%
+
+     [ hhsex2009$1 ] ;
+     [ hhsex2009$2 ] ;
+     [ hage2009$1 ]  ;
+     [ hage2009$2 ]  ;
+     [ hage2009$3 ]  ;
+     [ old2009$1 ]   ;
+     [ old2009$2 ]   ;
+     [ prime2009$1 ] ;
+     [ prime2009$2 ] ; 
+     [ prime2009$3 ] ;
+     [ young2009$1 ] ;
+     [ young2009$2 ] ;
+     [ young2009$3 ] ;
+     [ mig2009$1 ]   ;
+     [ mig2009$2 ]   ;
+     [ mig2009$3 ]   ;
+     [hdis2003$1@50]  ;
+
+     %C2#5%
+
+     [ hhsex2009$1 ] ;
+     [ hhsex2009$2 ] ;
+     [ hage2009$1 ]  ;
+     [ hage2009$2 ]  ;
+     [ hage2009$3 ]  ;
+     [ old2009$1 ]   ;
+     [ old2009$2 ]   ;
+     [ prime2009$1 ] ;
+     [ prime2009$2 ] ; 
+     [ prime2009$3 ] ;
+     [ young2009$1 ] ;
+     [ young2009$2 ] ;
+     [ young2009$3 ] ;
+     [ mig2009$1 ]   ;
+     [ mig2009$2 ]   ;
+     [ mig2009$3 ]   ;
+     [hdis2003$1@50]  ;
+
+     %C2#6%
+
+     [ hhsex2009$1 ] ;
+     [ hhsex2009$2 ] ;
+     [ hage2009$1 ]  ;
+     [ hage2009$2 ]  ;
+     [ hage2009$3 ]  ;
+     [ old2009$1 ]   ;
+     [ old2009$2 ]   ;
+     [ prime2009$1 ] ;
+     [ prime2009$2 ] ; 
+     [ prime2009$3 ] ;
+     [ young2009$1 ] ;
+     [ young2009$2 ] ;
+     [ young2009$3 ] ;
+     [ mig2009$1 ]   ;
+     [ mig2009$2 ]   ;
+     [ mig2009$3 ]   ;
+     [hdis2003$1@50]  ;
+
+     %C2#7%
+     [ hhsex2009$1@-50 ] ;
+     [ hhsex2009$2@-49 ] ;
+     [ hage2009$1@-50 ]  ;
+     [ hage2009$2@-49 ]  ;
+     [ hage2009$3@-48 ]  ;
+     [ old2009$1@-50 ]   ;
+     [ old2009$2@-49 ]   ;
+     [ prime2009$1@-50 ] ;
+     [ prime2009$2@-49 ] ; 
+     [ prime2009$3@-48 ] ;
+     [ young2009$1@-50 ] ;
+     [ young2009$2@-49 ] ;
+     [ young2009$3@-48 ] ;
+     [ mig2009$1@-50 ]   ;
+     [ mig2009$2@-49 ]   ;
+     [ mig2009$3@-48 ]   ;
+     [hdis2003$1@-50]    ;
+
+Model c3:
+
+     %C3#1%
+
+     [ hhsex2015$1 ] ;
+     [ hhsex2015$2 ] ;
+     [ hage2015$1 ]  ;
+     [ hage2015$2 ]  ;
+     [ hage2015$3 ]  ;
+     [ old2015$1 ]   ;
+     [ old2015$2 ]   ;
+     [ prime2015$1 ] ;
+     [ prime2015$2 ] ; 
+     [ prime2015$3 ] ;
+     [ young2015$1 ] ;
+     [ young2015$2 ] ;
+     [ young2015$3 ] ;
+     [ mig2015$1 ]   ;
+     [ mig2015$2 ]   ;
+     [ mig2015$3 ]   ;
+     [hdis0315$1@50] ;
+
+     %C3#2%
+
+     [ hhsex2015$1 ] ;
+     [ hhsex2015$2 ] ;
+     [ hage2015$1 ]  ;
+     [ hage2015$2 ]  ;
+     [ hage2015$3 ]  ;
+     [ old2015$1 ]   ;
+     [ old2015$2 ]   ;
+     [ prime2015$1 ] ;
+     [ prime2015$2 ] ; 
+     [ prime2015$3 ] ;
+     [ young2015$1 ] ;
+     [ young2015$2 ] ;
+     [ young2015$3 ] ;
+     [ mig2015$1 ]   ;
+     [ mig2015$2 ]   ;
+     [ mig2015$3 ]   ;
+     [hdis0315$1@50] ;
+
+     %C3#3%
+
+     [ hhsex2015$1 ] ;
+     [ hhsex2015$2 ] ;
+     [ hage2015$1 ]  ;
+     [ hage2015$2 ]  ;
+     [ hage2015$3 ]  ;
+     [ old2015$1 ]   ;
+     [ old2015$2 ]   ;
+     [ prime2015$1 ] ;
+     [ prime2015$2 ] ; 
+     [ prime2015$3 ] ;
+     [ young2015$1 ] ;
+     [ young2015$2 ] ;
+     [ young2015$3 ] ;
+     [ mig2015$1 ]   ;
+     [ mig2015$2 ]   ;
+     [ mig2015$3 ]   ;
+     [hdis0315$1@50]  ;
+
+     %C3#4%
+
+     [ hhsex2015$1 ] ;
+     [ hhsex2015$2 ] ;
+     [ hage2015$1 ]  ;
+     [ hage2015$2 ]  ;
+     [ hage2015$3 ]  ;
+     [ old2015$1 ]   ;
+     [ old2015$2 ]   ;
+     [ prime2015$1 ] ;
+     [ prime2015$2 ] ; 
+     [ prime2015$3 ] ;
+     [ young2015$1 ] ;
+     [ young2015$2 ] ;
+     [ young2015$3 ] ;
+     [ mig2015$1 ]   ;
+     [ mig2015$2 ]   ;
+     [ mig2015$3 ]   ;
+     [hdis0315$1@50]  ;
+
+
+     %C3#5%
+
+     [ hhsex2015$1 ] ;
+     [ hhsex2015$2 ] ;
+     [ hage2015$1 ]  ;
+     [ hage2015$2 ]  ;
+     [ hage2015$3 ]  ;
+     [ old2015$1 ]   ;
+     [ old2015$2 ]   ;
+     [ prime2015$1 ] ;
+     [ prime2015$2 ] ; 
+     [ prime2015$3 ] ;
+     [ young2015$1 ] ;
+     [ young2015$2 ] ;
+     [ young2015$3 ] ;
+     [ mig2015$1 ]   ;
+     [ mig2015$2 ]   ;
+     [ mig2015$3 ]   ;
+     [hdis0315$1@50]  ;
+
+     %C3#6%
+
+     [ hhsex2015$1 ] ;
+     [ hhsex2015$2 ] ;
+     [ hage2015$1 ]  ;
+     [ hage2015$2 ]  ;
+     [ hage2015$3 ]  ;
+     [ old2015$1 ]   ;
+     [ old2015$2 ]   ;
+     [ prime2015$1 ] ;
+     [ prime2015$2 ] ; 
+     [ prime2015$3 ] ;
+     [ young2015$1 ] ;
+     [ young2015$2 ] ;
+     [ young2015$3 ] ;
+     [ mig2015$1 ]   ;
+     [ mig2015$2 ]   ;
+     [ mig2015$3 ]   ;
+     [hdis0315$1@50]  ;
+
+     %C3#7%
+     [ hhsex2015$1@-50 ] ;
+     [ hhsex2015$2@-49 ] ;
+     [ hage2015$1@-50 ]  ;
+     [ hage2015$2@-49 ]  ;
+     [ hage2015$3@-48 ]  ;
+     [ old2015$1@-50 ]  ;
+     [ old2015$2@-49 ]   ;
+     [ prime2015$1@-50 ] ;
+     [ prime2015$2@-49 ] ; 
+     [ prime2015$3@-48 ] ;
+     [ young2015$1@-50 ] ;
+     [ young2015$2@-49 ] ;
+     [ young2015$3@-48 ] ;
+     [ mig2015$1@-50 ]   ;
+     [ mig2015$2@-49 ]   ;
+     [ mig2015$3@-48 ]   ;
+     [hdis0315$1@-50] ;
+
+output:
+      svalues tech8 ;
+save:
+      file = dec21_ab_lta_6x7x7_free.csv ;
+      save = cprob ;
