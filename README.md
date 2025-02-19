@@ -3,8 +3,7 @@
 The attached input files contain Mplus code corresponding to the papers:
 
 **1. "LCA-HIVRiskBehavior" (Latent Class Analysis with direct effects):**
-Clusters of HIV Risk and Protective Sexual Behaviors in Agincourt, Rural South Africa: Findings from the Ha Nakekela Population-Based Study of Ages 15 and Older
-in Archives of sexual behavior (2020) https://doi.org/10.1007/s10508-020-01663-5
+Clusters of HIV Risk and Protective Sexual Behaviors in Agincourt, Rural South Africa: Findings from the Ha Nakekela Population-Based Study of Ages 15 and Older. Archives of sexual behavior (2020) https://doi.org/10.1007/s10508-020-01663-5
 
 **2. "Household Transition Project" (Free-Parameter Latent Transition Model with distal outcomes):**
 Understanding Household Dynamics From the Ground Up: A Longitudinal Study From a Rural South African Setting. Demography (2024) https://doi.org/10.1215/00703370-11146140
