@@ -1,0 +1,107 @@
+    Title:
+        LCA based model
+        with direct effect on classes and observed indicators
+        with 3-way interaction maleagehiv ;
+
+    Data:
+      File is clusters_02.dta.dat ;
+
+    define:
+          edu1 = edu_cat==1 ;
+          edu2 = edu_cat==2 ;
+          ses1 = qses3==1 ;
+          ses2 = qses3==2 ;
+          drink1= alcohol==1;
+          drink2= alcohol>=2;
+          ! Three interaction terms
+          malehiv = male*hiv ;
+          maleage = male*age ;
+          agehiv  = hiv*age ;
+          threeway = male*hiv*age ;
+
+    Variable:
+      Names are
+         casual pr_hiv pr_con
+         age male hiv sa edu_cat evertest sti alcohol
+         union nump sn qses3;
+      Missing are all (-9999) ;
+
+    idvariable = sn ;
+
+    usevar    =  nump sti pr_con
+                 pr_hiv casual union male
+                 hiv age sa evertest
+                 edu1 edu2 ses1 ses2 drink1
+                 drink2 malehiv maleage agehiv threeway;
+
+    categorical = nump sti pr_con pr_hiv casual union;
+
+    classes = c(3) ;
+
+    analysis:
+        type = mixture;
+        starts = 1500 100 ;
+        stiterations = 200 ;
+        processors = 30 ;
+
+    model:
+    %overall%
+         c on male hiv age sa evertest
+               edu1 edu2 ses1 ses2
+               drink1 drink2
+               malehiv maleage agehiv threeway;
+
+         nump on male ;
+         union on male ;
+         sti on male ;
+
+    !!single
+         %C#1%
+         [ nump$1*3.05199 ];
+         [ nump$2*12.25928 ];
+         [ sti$1*1.97491 ];
+         [ pr_con$1*-0.44266 ];
+         [ pr_con$2*0.44266 ];
+         [ pr_hiv$1*-1.48539 ];
+         [ pr_hiv$2*1.48542 ];
+         [ casual$1*0.93666 ];
+         [ union$1*4.19150 ];
+         nump ON male@0;
+         union ON male@0;
+         sti ON male@0;
+
+    !!marriage
+         %C#3%
+         nump ON male*9.32899;
+         union ON male*0.04016;
+         sti ON male*0.59960;
+         [ nump$1*11.74575 ];
+         [ nump$2*13.87286 ];
+         [ sti$1*2.07824 ];
+         [ pr_con$1*2.05669 ];
+         [ pr_con$2*2.05671 ];
+         [ pr_hiv$1*2.65967 ];
+         [ pr_hiv$2*2.65973 ];
+         [ casual$1*5.54361 ];
+         [ union$1*-1.03050 ];
+
+    !!single
+         %C#2%
+         nump ON male*0.67700;
+         union ON male*1.99312;
+         sti ON male*0.65413;
+         [ nump$1*-11.56860 ];
+         [ nump$2*1.32618 ];
+         [ sti$1*1.58453 ];
+         [ pr_con$1*-0.31763 ];
+         [ pr_con$2*2.02694 ];
+         [ pr_hiv$1*1.04939 ];
+         [ pr_hiv$2*3.24041 ];
+         [ casual$1*-0.97242 ];
+         [ union$1*2.84442 ];
+
+    plot:
+        type = plot3 ;
+
+    output:
+    svalues tech8 tech11 tech14;
