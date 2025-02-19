@@ -1,0 +1,50 @@
+  Title:
+  SAVA syndemic mortality
+  EFA with random effects
+  two-level Factor analysis ;
+
+  Data:
+    File is syndemic-fa-00.dat ;
+
+  Variable:
+    Names are
+       fips year
+       y1 y2 y3 y4 y5 y6 y7
+       y8 y9 y10 y11 y12 y13 y14 y15 y16 y17
+       y18 y19 y20
+       HIV TB Substance
+       Violence pslave1860
+       stdslave stdhiv stdtb
+       stddrug stdvio;
+
+    Missing are all (-9999) ;
+
+    usevar =
+        HIV TB
+       Substance Violence ;
+
+    cluster = fips ;
+   auxiliary = year ;
+
+  ANALYSIS:
+   Type = twolevel;
+   start = 1000 200  ;
+   process = 10 ;
+
+  MODEL:
+   %between%
+   f1b by HIV TB
+       Substance Violence ;
+
+   %within%
+   f1w by  HIV TB
+        ;
+   f1w2 by Substance Violence
+        ;
+
+  OUTPUT:
+   Stand Res;
+
+  savedata:
+   File = mcfa-00-2fa.csv ;
+   save = fscores  ;
