@@ -1,0 +1,66 @@
+  Title:
+  Circular Migration trajectory 
+  with pre-post ART death as distal outcome
+  0 = no death
+  1 = pre-ART
+  2 = post-ART 
+  < 60 years old HAALSI cohort;
+
+  Data:
+    File is 4059c-03-dist.dat ;
+
+  Variable:
+    Names are
+       person d18 d19 d20 d21 d22 d23 d24 d25 d26 d27 d28 d29 d30 d31 d32
+       d33 d34 d35 d36 d37 d38 d39 d40 d41 d42 d43 d44 d45 d46 d47 d48 d49
+       d50 d51 d52 d53 d54 d55 d56 d57 d58 m18 m19 m20 m21 m22 m23 m24 m25
+       m26 m27 m28 m29 m30 m31 m32 m33 m34 m35 m36 m37 m38 m39 m40 m41 m42
+       m43 m44 m45 m46 m47 m48 m49 m50 m51 m52 m53 m54 m55 m56 m57 m58 tag18
+       tag19 tag20 tag21 tag22 tag23 tag24 tag25 tag26 tag27 tag28 tag29
+       tag30 tag31 tag32 tag33 tag34 tag35 tag36 tag37 tag38 tag39 tag40
+       tag41 tag42 tag43 tag44 tag45 tag46 tag47 tag48 tag49 tag50 tag51
+       tag52 tag53 tag54 tag55 tag56 tag57 tag58 m18b m19b m20b m21b m22b
+       m23b m24b m25b m26b m27b m28b m29b m30b m31b m32b m33b m34b m35b m36b
+       m37b m38b m39b m40b m41b m42b m43b m44b m45b m46b m47b m48b m49b m50b
+       m51b m52b m53b m54b m55b m56b m57b m58b py death ddd dart;
+
+    Missing are all (-9999) ;
+    idvar = person ;
+    usevar = m20-m58 py dart;
+    class = c(4) ;
+    count = m20-m58 ;
+    categorical = dart ;
+
+  Analysis:
+      Type = mixture ;
+      processors = 10 ;
+      start =2000 500;
+
+  Model:
+    %overall%
+     i s q |
+              m20@5 m21@6 m22@7 m23@8 m24@9
+              m25@10 m26@11 m27@12 m28@13
+              m29@14 m30@15 m31@16 m32@17
+              m33@18 m34@19 m35@20 m36@21
+              m37@22 m38@23 m39@24 m40@25
+              m41@26 m42@27 m43@28 m44@29
+              m45@30 m46@31 m47@32 m48@33
+              m49@34 m50@35 m51@36 m52@37
+              m53@38 m54@39 m55@40 m56@41
+              m57@42 m58@43  ;
+
+      c on py ;
+      i on py ;
+
+      %c#1%
+               [ i@0 ];
+               [ s@0 ];
+               [ q@0 ];
+               [m20-m58@-15] ;
+  output:
+    svalues tech1 tech8 ;
+
+  plot:
+    series = m20-m58 (*) ;
+    type = plot3 ;
